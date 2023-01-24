@@ -28,9 +28,8 @@ class Player(pg.sprite.Sprite):  # TODO: sprites have pos, dir and speed
 
     def import_assets(self) -> None:  # TODO: property or constructor?
         """Import player assets."""
-        path = os.path.abspath('src/graphics/player/right')  # FIXME: figure out paths
-        # TODO: remove range(4)
-        self.animation = [pg.image.load(f'{path}/{frame}.png').convert_alpha() for frame in range(4)]
+        # TODO: refactor range(4)
+        self.animation = [pg.image.load(f'{PLAYER_GRAPHS_PATH}/{frame}.png').convert_alpha() for frame in range(4)]
 
     def move(self, dt: float) -> None:
         """Move player.

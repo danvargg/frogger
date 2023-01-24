@@ -5,7 +5,7 @@ __version__ = '0.0.1'
 
 WINDOW_WIDTH, WINDOW_HEIGHT = 1280, 720
 
-PLAYER_GRAPHS_PATH = 'graphics\\player'
+PLAYER_GRAPHS_PATH = 'src/graphics/player/right'
 
 pg.init()
 DISPLAY_SURFACE = pg.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
