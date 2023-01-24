@@ -6,12 +6,14 @@ from game import (
     WINDOW_WIDTH, WINDOW_HEIGHT, CLOCK, CAR_START_POSITIONS, SIMPLE_OBJECTS, LONG_OBJECTS, DISPLAY_SURFACE
 )
 from game.player import Player
+from game.car import Car
 
 # Groups
 all_sprites = pg.sprite.Group()
 
 # Sprites
 player = Player(pos=(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), groups=all_sprites)
+car = Car((600, 200), groups=all_sprites)
 
 # game loop
 while True:
