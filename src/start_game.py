@@ -8,6 +8,19 @@ from game import (
 from game.player import Player
 from game.car import Car
 
+
+class AllSprites(pg.sprite.Group):  # TODO: refactor
+    """Group of all sprites."""
+
+    def __init__(self):
+        super().__init__()
+
+    def update(self, dt):
+        """Update all sprites."""
+        for sprite in self.sprites():
+            sprite.update(dt)
+
+
 # Groups
 all_sprites = pg.sprite.Group()
 

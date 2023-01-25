@@ -7,13 +7,13 @@ import pygame as pg
 from game import CAR_GRAPHS_PATH
 
 
-class Car(pg.sprite.Sprite):
+class Car(pg.sprite.Sprite):  # FIXME: remove magic numbers
     """Car sprite."""
 
     def __init__(self, pos, groups) -> None:
         super().__init__(groups)
 
-        for _, _, image_list in os.walk(CAR_GRAPHS_PATH):
+        for _, _, image_list in os.walk(CAR_GRAPHS_PATH):  # TODO: refactor
             car_name = choice(image_list)
 
         self.image = pg.image.load(CAR_GRAPHS_PATH + '/' + car_name).convert_alpha()  # TODO: refactor
@@ -31,5 +31,13 @@ class Car(pg.sprite.Sprite):
         self.speed = 300
 
     def update(self, dt: float):
+        """_summary_
+
+        Args:
+            dt (float): _description_
+        """
         self.pos += self.direction * self.speed * dt
         self.rect.center = (round(self.pos.x), round(self.pos.y))
+
+        if not -200 < self.rect.x < 3400:
+            self.kill()
