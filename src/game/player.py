@@ -36,7 +36,7 @@ class Player(pg.sprite.Sprite):  # TODO: sprites have pos, dir and speed
                     self.animations[name] = []
             else:
                 for file_name in folder[2]:
-                    path = folder[0].replace('\\', '/') + '/' + file_name  # TODO: are the slashes ok?
+                    path = folder[0].replace('\\', '/') + '/' + file_name  # FIXME: fix these paths
                     surf = pg.image.load(path).convert_alpha()
                     key = folder[0].split('\\')[1]
                     self.animations[key].append(surf)

@@ -9,6 +9,7 @@ from game import (
 )
 from game.player import Player
 from game.car import Car
+from game.sprite import SimpleSprite, LongSprite
 
 
 class AllSprites(pg.sprite.Group):  # TODO: refactor
@@ -42,10 +43,23 @@ class AllSprites(pg.sprite.Group):  # TODO: refactor
 all_sprites = AllSprites()
 
 # Sprites
-player = Player(pos=(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), groups=all_sprites)
+player = Player(pos=(2062, 3274), groups=all_sprites)
 car_timer = pg.event.custom_type()
 pg.time.set_timer(car_timer, 50)
 pos_list = []
+
+# Sprites setup
+for file_name, pos_list in SIMPLE_OBJECTS.items():
+    path = f'src/graphics/objects/simple/{file_name}.png'
+    surf = pg.image.load(path).convert_alpha()
+    for pos in pos_list:
+        SimpleSprite(surf=surf, pos=pos, groups=all_sprites)
+
+for file_name, pos_list in LONG_OBJECTS.items():
+    path = f'src/graphics/objects/long/{file_name}.png'
+    surf = pg.image.load(path).convert_alpha()
+    for pos in pos_list:
+        LongSprite(surf=surf, pos=pos, groups=all_sprites)
 
 # game loop
 while True:
