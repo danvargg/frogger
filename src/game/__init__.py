@@ -7,6 +7,8 @@ WINDOW_WIDTH, WINDOW_HEIGHT = 1280, 720
 
 PLAYER_GRAPHS_PATH = 'src/graphics/player'
 CAR_GRAPHS_PATH = 'src/graphics/cars'
+BACKGROUND_GRAPH_PATH = 'src/graphics/main/map.png'
+OVERLAY_GRAPH_PATH = 'src/graphics/main/overlay.png'
 
 pg.init()
 DISPLAY_SURFACE = pg.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))

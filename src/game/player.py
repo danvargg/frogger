@@ -2,7 +2,7 @@
 import os
 import pygame as pg
 
-from game import PLAYER_GRAPHS_PATH  # FIXME: use for paths
+from game import PLAYER_GRAPHS_PATH
 
 
 class Player(pg.sprite.Sprite):  # TODO: sprites have pos, dir and speed
