@@ -41,9 +41,10 @@ class AllSprites(pg.sprite.Group):  # TODO: refactor
 
 # Groups
 all_sprites = AllSprites()
+obstacle_sprites = pg.sprite.Group()
 
 # Sprites
-player = Player(pos=(2062, 3274), groups=all_sprites)
+player = Player(pos=(2062, 3274), groups=all_sprites, collision_sprites=obstacle_sprites)
 car_timer = pg.event.custom_type()
 pg.time.set_timer(car_timer, 50)
 pos_list = []
@@ -53,13 +54,13 @@ for file_name, pos_list in SIMPLE_OBJECTS.items():
     path = f'src/graphics/objects/simple/{file_name}.png'
     surf = pg.image.load(path).convert_alpha()
     for pos in pos_list:
-        SimpleSprite(surf=surf, pos=pos, groups=all_sprites)
+        SimpleSprite(surf=surf, pos=pos, groups=[all_sprites, obstacle_sprites])
 
 for file_name, pos_list in LONG_OBJECTS.items():
     path = f'src/graphics/objects/long/{file_name}.png'
     surf = pg.image.load(path).convert_alpha()
     for pos in pos_list:
-        LongSprite(surf=surf, pos=pos, groups=all_sprites)
+        LongSprite(surf=surf, pos=pos, groups=[all_sprites, obstacle_sprites])
 
 # game loop
 while True:
@@ -75,7 +76,7 @@ while True:
             if random_pos not in pos_list:
                 pos_list.append(random_pos)
                 pos = (random_pos[0], 200, random_pos[1] + randint(-10, 10))
-                Car(pos=random_pos, groups=all_sprites)
+                Car(pos=random_pos, groups=[all_sprites, obstacle_sprites])
             if len(pos_list) > 5:
                 pos_list.pop(0)
 
@@ -85,12 +86,17 @@ while True:
     # Draw a background
     DISPLAY_SURFACE.fill('black')
 
-    # Update
-    all_sprites.update(dt=dt)
+    # End game
+    if player.pos.y >= 1180:
+        # pg.quit()
+        # sys.exit()
 
-    # Draw
-    # all_sprites.draw(DISPLAY_SURFACE)
-    all_sprites.customize_draw()
+        # Update
+        all_sprites.update(dt=dt)
+
+        # Draw
+        # all_sprites.draw(DISPLAY_SURFACE)
+        all_sprites.customize_draw()
 
     # update the display surface -> drawing the frame
     pg.display.update()

@@ -30,14 +30,13 @@ class Car(pg.sprite.Sprite):  # FIXME: remove magic numbers
 
         self.speed = 300
 
-    def update(self, dt: float):
-        """_summary_
+        # collision
+        self.hitbox = self.rect.inflate(0, -self.rect.height / 2)
 
-        Args:
-            dt (float): _description_
-        """
+    def update(self, dt: float):
         self.pos += self.direction * self.speed * dt
-        self.rect.center = (round(self.pos.x), round(self.pos.y))
+        self.hitbox.center = (round(self.pos.x), round(self.pos.y))
+        self.rect.center = self.hitbox.center
 
         if not -200 < self.rect.x < 3400:
             self.kill()
