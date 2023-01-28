@@ -49,6 +49,15 @@ car_timer = pg.event.custom_type()
 pg.time.set_timer(car_timer, 50)
 pos_list = []
 
+# Font
+font = pg.font.Font(None, 50)
+text_surface = font.render('GANASTE!', True, (255, 255, 255))
+text_rect = text_surface.get_rect(center=(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
+
+# Music
+music = pg.mixer.Sound('src/audio/music.mp3')
+music.play(loops=-1)
+
 # Sprites setup
 for file_name, pos_list in SIMPLE_OBJECTS.items():
     path = f'src/graphics/objects/simple/{file_name}.png'
@@ -97,6 +106,9 @@ while True:
         # Draw
         # all_sprites.draw(DISPLAY_SURFACE)
         all_sprites.customize_draw()
+    else:
+        DISPLAY_SURFACE.fill('teal')
+        DISPLAY_SURFACE.blit(text_surface, text_rect)
 
     # update the display surface -> drawing the frame
     pg.display.update()
